@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>angularjs自定义指令</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body ng-app="myApp">
+	<div ng-controller="timeController" ng-init="showselTime=false">
+  	<mydatetime-picker data-result="seldatetime" data-showpick="false" ></mydatetime-picker>
+		<hr />
+		<div ng-click="showselTime=!showselTime;getAllselTime()">
+			<span ng-show="!showselTime">查看已选时间</span>
+			<span ng-show="showselTime">隐藏已选时间</span>
+		</div>
+		<div ng-show="showselTime" ng-repeat="item in reserveTimelist track by $index">
+           <p>{{item.month}}</p>
+           <div style="margin-bottom:20px;">
+              <span style="text-align:center;width: 27%;padding: 10px;margin:10px;border-radius: 5px;border:1px solid #ddd;display:inline-block;" ng-repeat="item1 in item.child | orderBy:item1">{{item1}}</span>
+           </div>
+       </div>
+	</div>
+</body>
+<script type="text/javascript" src="angular.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</html>
